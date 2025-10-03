@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Toon Game</title>
+</head>
+<body>
+<h1>Cartoon game by Dara Osunkoya</h2>
+<h2>Getting input</h2>
+
+<form>
+    <label for="hidden">That’s all folks</label>
+    <input id="hidden" type="password" value="Porky Pig">
+
+    <label for="guess">Guess the toon</label>
+    <input id="guess" type="text">
+
+    <button id="guess-btn" type="submit" onclick="checkToon()">Check the guess</button>
+</form>
+
+<div id="result">Result</div>
+
+<script> 
+    let darn = 0;
+    let yahoo = 0;
+function checkToon(){
+    const secret = document.getElementById("hidden").value;
+    const guessed = document.getElementById("guess").value;
+    const out = document.getElementById("result");
+
+    if (guessed == secret){
+        alert("You got it");
+        yahoo += 1;
+        out.innerHTML = "Yahoo" + yahoo;
+    }
+    else{
+        alert("Missed me");
+        darn += 1;
+        out.innerHTML = "Darn" + darn;
+    }
+}
+</script>
+
+</body>
+</html> 
