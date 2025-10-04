@@ -20,6 +20,12 @@
 
 <div id="result">Result</div>
 
+<div>
+    <img id="plant" src="./Kalmia.png" alt="Picture of a Kalmia flower" width="150px" height="150" onclick="updatePicd()">
+</div>
+
+
+
 <script> 
     let darn = 0;
     let yahoo = 0;
@@ -37,6 +43,27 @@ function checkToon(){
         alert("Missed me");
         darn += 1;
         out.innerHTML = "Darn" + darn;
+    }
+}
+
+    let usePic = 1;
+    const pic = document.getElementById("plant");
+function updatePicd(){
+    switch (usePic) {
+        case 1:
+            pic.src = "./Orchid.png";
+            usePic ++;
+            break;
+        case 2:
+            pic.src = "./Ursinia.png";
+            usePic ++;
+            break;
+        case 3:
+            pic.src = "./Kalmia.png";
+            usePic = 1;
+            break;
+        default:
+            break;
     }
 }
 </script>
