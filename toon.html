@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>Toon Game</title>
-</head>
+    <head>
+        <title>Toon Game</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+        crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+    </head>
 <body>
 <h1>Cartoon game by Dara Osunkoya</h2>
 <h2>Getting input</h2>
@@ -15,10 +25,16 @@
     <label for="guess">Guess the toon</label>
     <input id="guess" type="text">
 
-    <input id="guess-btn" type="button" value="Check the guess" onclick="checkToon()">
+    <input id="guess-btn" type="button" value="Check the guess" class="btn" onclick="checkToon()">
+    <br>
 </form>
 
+<div class="progress-bar" id="bar" style="width: 0%; height: 8px; background-color: red;"></div>
+<br>
+<div id="guesses"></div> <br>
+
 <div id="result">Result</div>
+
 
 <div>
     <img id="plant" src="./Kalmia.png" alt="Picture of a Kalmia flower" width="150px" height="150" onclick="updatePicd()">
@@ -29,25 +45,40 @@
 <script> 
     let darn = 0;
     let yahoo = 0;
+    let gcount = 0;
+    let progress = 0;
+
 function checkToon(){
     const secret = document.getElementById("hidden").value;
     const guessed = document.getElementById("guess").value;
-    const out = document.getElementById("result");
+    
+    let bar = document.getElementById("bar");
+    let out = document.getElementById("result");
+    let guessedList = document.getElementById("guesses");
 
-    if (guessed == secret){
+    if (gcount == 10){
+        alert("Sorry, too many wrong guesses.");
+    }
+    else if (guessed == secret){
         alert("You got it");
         yahoo += 1;
-        out.innerHTML = "Yahoo" + yahoo;
+        out.innerHTML = "Yahoo: " + yahoo + " Darn: " + darn;
+        gcount ++;
     }
     else{
         alert("Missed me");
         darn += 1;
-        out.innerHTML = "Darn" + darn;
+        out.innerHTML = "Yahoo: " + yahoo + " Darn: " + darn;
+        gcount ++;
+        progress += 10;
+        bar.style.width = progress+"%";
     }
+    guessedList.innerHTML += guessed + " <br>";
 }
 
     let usePic = 1;
     const pic = document.getElementById("plant");
+
 function updatePicd(){
     switch (usePic) {
         case 1:
