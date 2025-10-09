@@ -20,8 +20,23 @@
     <input type="button" onclick="amounts()" value="Show total">
 </form>
 
-
 <div id="result"></div>
+
+<form>
+    <label for="product">Product</label>
+    <input type="radio" name="product" id="product" value="time" onclick="chooseOp()">
+
+    <label for="sum">Sum</label>
+    <input type="radio" name="sum" id="sum" value="add" onclick="chooseOp()">
+
+    <label for="mod">Mod</label>
+    <input type="radio" name="mod" id="mod" value="mod" onclick="chooseOp()">
+
+    <label for=""></label>
+    <input type="radio" name="" id="" onclick="chooseOp()">
+</form>
+
+<div id="op-result"></div>
 
 
 <script> 
@@ -29,16 +44,36 @@
     const basicPrice = document.getElementById("standardCharge").value;
     const discountPosition = document.getElementById("discountLength").value;
     const discountCost = document.getElementById("discountCharge").value;
-    let letter;
+
+    // const price;
+    // const breakAt;
 function amounts(){
     let totalCosts = "";
     for (let size = discountPosition-3 ; size < discountPosition+3; size++){
-        (size <= discountPosition) ? totalCosts += "size" + size + "costs" + size * basicPrice + "; " : totalCosts += "size" + size + "costs" + size * discountCost +  "; ";
+        (size <= discountPosition) ? totalCosts += "size " + size + " costs " + size * basicPrice + "; " : totalCosts += "size " + size + " costs " + size * discountCost +  "; ";
     }
     let result = document.getElementById("result");
     result.innerHTML = "Total Costs are: " + totalCosts;
 }
+
+function chooseOp(){
+    const prod = document.getElementById("product");
+    const add = document.getElementById("sum");
+    const mod = document.getElementById("mod");
+    let result = document.getElementById("op-result");
+
+    if (prod.checked){
+        result.innerHTML = basicPrice * discountPosition;
+    }
+    if (add.checked){
+        result.innerHTML = basicPrice + discountPosition
+    }
+    if (mod.checked){
+        result.innerHTML = basicPrice % discountPosition;
+    }
+}
+
 </script>
 
 </body>
-</html> 
+</html>
