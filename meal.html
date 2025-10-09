@@ -17,20 +17,33 @@
     <label for="desert">Chocolate for desert</label>
     <input type="checkbox" id="desert" value="False"> <br>
 
-    <input type="button" value="Meal Choices" onclick="choices()"></button>
+    <input type="button" value="Meal Choices" onclick="choices()">
 </form>
 
+<br>
 
-<div id="result"></div>
+<form>
+    <label for="drink">Enter drink</label>
+    <input type="text" id="drink" name="drink" value="Wine"> <br>
+
+    <label for="starter">Enter starter</label>
+    <input type="text" id="starter" name="starter"> <br>
+
+    <input type="button" value="Update the Meal" onclick="updateMeal()">
+</form>
+
+<br><div id="result"></div>
 
 <script> 
 let my_meal = {salad:"", stew:"", desert:""};
 const saladBox = document.getElementById("salad");
 const stewBox = document.getElementById("stew");
 const desertBox = document.getElementById("desert");
+
+let out = document.getElementById("result");
+
 function choices(){
     my_meal = {salad:"", stew:"", desert:""};
-    let out = document.getElementById("result");
 
     if (saladBox.checked){
         my_meal.salad = "true";
@@ -52,6 +65,18 @@ function choices(){
     }
     out.innerHTML = "salad: " + my_meal.salad + " | stew: " + my_meal.stew + " | desert: " + my_meal.desert
 }
+
+
+function updateMeal(){
+    let drinkInput = document.getElementById("drink").value;
+    let starterInput = document.getElementById("starter").value;
+
+    my_meal["drink"] = drinkInput;
+    my_meal["starter"] = starterInput;
+
+    out.innerHTML += " | drink: " + my_meal.drink + " | starter: " + my_meal.starter;
+}
+
 </script>
 
 </body>
