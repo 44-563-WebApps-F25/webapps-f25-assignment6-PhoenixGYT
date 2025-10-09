@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Meal Plan</title>
+ </head>
+<body>
+
+<h2>Dara plans a meal</h2>
+
+<form>
+    <label for="salad">Serve salad</label>
+    <input type ="checkbox" id="salad" name="salad" value="true"> <br>
+
+    <label for="stew">Make stew</label>
+    <input type ="checkbox" id="stew" name="stew" value="true"> <br>
+
+    <label for="desert">Chocolate for desert</label>
+    <input type="checkbox" id="desert" value="False"> <br>
+
+    <input type="button" value="Meal Choices" onclick="choices()"></button>
+</form>
+
+
+<div id="result"></div>
+
+<script> 
+let my_meal = {salad:"", stew:"", desert:""};
+const saladBox = document.getElementById("salad");
+const stewBox = document.getElementById("stew");
+const desertBox = document.getElementById("desert");
+function choices(){
+    my_meal = {salad:"", stew:"", desert:""};
+    let out = document.getElementById("result");
+
+    if (saladBox.checked){
+        my_meal.salad = "true";
+    }
+    else{
+        my_meal.salad = "false";
+    }
+    if (stewBox.checked){
+        my_meal.stew = "true";
+    }
+    else{
+        my_meal.stew = "false";
+    }
+    if (desertBox.checked){
+        my_meal.desert = "true";
+    }
+    else{
+        my_meal.desert = "false";
+    }
+    out.innerHTML = "salad: " + my_meal.salad + " | stew: " + my_meal.stew + " | desert: " + my_meal.desert
+}
+</script>
+
+</body>
+</html> 
